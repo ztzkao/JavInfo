@@ -1,7 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-
+def caribbeancomm_init(id):
+    r = requests.get('https://cn.caribbeancom.com/moviepages/' + id + '/index.html')
+    soup = BeautifulSoup(r.text, 'lxml')
+    return soup
 def getactor_cn(soup):
     fullname = ''
     for name in soup.find_all(name='span', itemprop="name"):
@@ -25,11 +28,11 @@ def getduration_cn(soup):
     get = soup.find(name='span', itemprop="duration").string
     duration = get.replace(' ', '')
     return duration
-
-id = input('输入id:\n')
-r = requests.get('https://cn.caribbeancom.com/moviepages/' + id + '/index.html')
-soup = BeautifulSoup(r.text, 'lxml')
-print(getcat_cn(soup)+ '\n')
-print(getactor_cn(soup) + '\n')
-print(getuploadDate_cn(soup) + '\n')
-print(str(getduration_cn(soup)) + '\n')
+if __name__ == '__main__':
+    id = input('输入id:\n')
+    r = requests.get('https://cn.caribbeancom.com/moviepages/' + id + '/index.html')
+    soup = BeautifulSoup(r.text, 'lxml')
+    print(getcat_cn(soup)+ '\n')
+    print(getactor_cn(soup) + '\n')
+    print(getuploadDate_cn(soup) + '\n')
+    print(str(getduration_cn(soup)) + '\n')
