@@ -2,37 +2,53 @@ import requests
 from bs4 import BeautifulSoup
 
 def caribbeancomm_init(id):
-    r = requests.get('https://cn.caribbeancom.com/moviepages/' + id + '/index.html')
+    r = requests.get('https://www.caribbeancom.com/moviepages/' + id + '/index.html')
     soup = BeautifulSoup(r.text, 'lxml')
     return soup
-def getactor_cn(soup):
-    fullname = ''
-    for name in soup.find_all(name='span', itemprop="name"):
-        fullname += name.string + ' '
-    return fullname
 
-def getcat_cn(soup):
-    cates = ''
-    for name in soup.find_all(name='dl', class_='movie-info-cat'):
-        for span in name.find_all(name='span'):
-            cates += span.string + ' '
-        for a in name.find_all(name='a', itemprop = 'genre'):
-            cates += a.string + ' '
-    return cates
+def getTite(soup):
+    title = soup.find(name='h1', itemprop="name").string
+    return title
 
-def getuploadDate_cn(soup):
-    date = soup.find(name='dd', itemprop="uploadDate").string
+def getDiscription(soup):
+    description = soup.find(name='p', itemprop="description").string
+    return description
+
+def getActor(soup):
+    allName = ''
+    for name in soup.find_all(name='a', class_= 'spec__tag', itemprop="actor"):
+        allName += name.string + ' '
+    return allName[:-1]
+
+def getUploadDate(soup):
+    date = soup.find(name='span', itemprop="uploadDate").string
     return date
 
-def getduration_cn(soup):
+def getDuration(soup):
     get = soup.find(name='span', itemprop="duration").string
-    duration = get.replace(' ', '')
+    duration = get.strip()
     return duration
+
+def getTags(soup):
+    tags = ''
+    for name in soup.find_all(name='span', class_='spec-content'):
+        for a in name.find_all(name='a', itemprop='url'):
+            tags += a.string + ' '
+        for a in name.find_all(name='a', itemprop='genre'):
+            tags += a.string + ' '
+    return tags[:-1]
+
 if __name__ == '__main__':
     id = input('输入id:\n')
-    r = requests.get('https://cn.caribbeancom.com/moviepages/' + id + '/index.html')
-    soup = BeautifulSoup(r.text, 'lxml')
-    print(getcat_cn(soup)+ '\n')
-    print(getactor_cn(soup) + '\n')
-    print(getuploadDate_cn(soup) + '\n')
-    print(str(getduration_cn(soup)) + '\n')
+    soup = caribbeancomm_init(id)
+    diction = {
+        'id': id,
+        'coverLink': 'https://www.caribbeancom.com/moviepages/' + id + '/images/l_l.jpg',
+        'title': getTite(soup),
+        'description': getDiscription(soup),
+        'actor': getActor(soup),
+        'releaseTime': getUploadDate(soup),
+        'duration': getDuration(soup),
+        'tags': getTags(soup)
+    }
+    print(diction)
