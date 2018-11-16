@@ -24,7 +24,7 @@ if __name__ == '__main__':
         'id': id,
         'coverLink': data['ThumbHigh'],
         'title': data['Title'],
-        'description': data['Desc'],
+        'description': data['Desc'].strip(),
         'actor': data['Actor'],
         'releaseTime': data['Release'],
         'duration': getDuration(data['Duration']),
