@@ -1,13 +1,13 @@
-#JavInfo
-##A Python program to scrape English  metadata for Japanese Adult Videos (JAV) are searched on:
+# JavInfo  
+## A Python program to scrape English  metadata for Japanese Adult Videos (JAV) are searched on:  
 
 
-##Complete  
+## Complete    
 Caribbeancompr.com (Carribeancom Premium)    
 Tokyo Hot   
 1pondo  
 
-##working
+##  Working  
 JavLibrary.com  
 R18.com  
 DMM.co.jp  
