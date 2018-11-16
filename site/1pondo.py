@@ -13,7 +13,6 @@ def getDuration(sec):
 
 def getTags(tags):
     date = ''
-    print(type(tags))
     for num in range(len(tags)):
         date += tags[num] + ' '
     return date[:-1]
