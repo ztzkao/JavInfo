@@ -2,7 +2,7 @@ import  re
 import requests
 from bs4 import BeautifulSoup
 
-def caribbeancomm_init(id):
+def heyzo_init(id):
     r = requests.get('http://www.heyzo.com/moviepages/' + id + '/index.html')
     soup = BeautifulSoup(r.text, 'lxml')
     return soup
@@ -38,10 +38,10 @@ def getTags(soup):
 
 if __name__ == '__main__':
     id = input('输入id:\n')
-    soup = caribbeancomm_init(id)
+    soup = heyzo_init(id)
     diction = {
         'id': id,
-        'coverLink': 'https://www.caribbeancom.com/moviepages/' + id + '/images/l_l.jpg',
+        'coverLink': 'http://www.heyzo.com/contents/3000/'+ id +'/images/player_thumbnail.jpg',
         'title': getTite(soup),
         'description': getDiscription(soup),
         'actor': getActor(soup),

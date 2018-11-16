@@ -29,10 +29,8 @@ def getInfo(soup):
     cover = soup.find('div', class_=re.compile("^flowplayer")).video.attrs['poster']
     releaseTime = rawData[5].string
     duration = rawData[6].string
-
     for a in rawData[2].find_all('a'):
         tag += a.string + ' '
-
     info = {
         'id': id,
         'coverLink': cover,
