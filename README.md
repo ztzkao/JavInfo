@@ -10,6 +10,5 @@ Tokyo Hot
 ##  Working  
 JavLibrary.com  
 R18.com  
-DMM.co.jp  
 Kin8Tengoku  
 HEYZO 
