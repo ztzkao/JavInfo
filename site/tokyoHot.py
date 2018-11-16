@@ -1,8 +1,8 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-
-def tokyoHot_init(id):
+p = re.compile('<[^>]+>')
+def getLink(id):
     r = requests.get('https://my.tokyo-hot.com/product/?q=' + id + '&x=0&y=0')
     search = BeautifulSoup(r.text, 'lxml')
     getLink = 'https://my.tokyo-hot.com' + search.find(name='a', class_='rm')['href']
@@ -18,10 +18,9 @@ def getDiscription(soup):
     description = soup.find(name='div', class_="sentence").string
     return description
 
-def getInfo(soup):
+def tokyoHot_init(id):
     tag = ''
-    p = re.compile('<[^>]+>')
-    soup = tokyoHot_init(id)
+    soup = getLink(id)
     rawData = soup.find(name='dl', class_='info').find_all('dd')
     desc = soup.find('div', class_='sentence')
     description = p.sub('', str(desc)).strip()
@@ -45,4 +44,4 @@ def getInfo(soup):
 
 if __name__ == '__main__':
     id = input('输入id:\n')
-    print(getInfo(id))
+    print(tokyoHot_init(id))

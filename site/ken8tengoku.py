@@ -1,11 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-def kin8tengoku_init(id):
-    r = requests.get('http://www.kin8tengoku.com/moviepages/' + id + '/index.html')
-    soup = BeautifulSoup(r.text, 'lxml')
-    return soup
-
 def getTite(soup):
     title = soup.find(name='p', class_='sub_title').string.strip()
     return title
@@ -13,10 +8,10 @@ def getTite(soup):
 def getDiscription(soup):
     description = soup.find(name='div', id="comment").string
     return description
-
-def getInfo(id):
+def kin8tengoku_init(id):
+    r = requests.get('http://www.kin8tengoku.com/moviepages/' + id + '/index.html')
+    soup = BeautifulSoup(r.text, 'lxml')
     tag = ''
-    soup = kin8tengoku_init(id)
     rawData = soup.find_all(name='td', class_='movie_table_td2')
     act = rawData[0].a.string.replace(' ','')
     releaseTime = rawData[-1].string
@@ -37,4 +32,4 @@ def getInfo(id):
 
 if __name__ == '__main__':
     id = input('输入id:\n')
-    print(getInfo(id))
+    print(kin8tengoku_init(id))

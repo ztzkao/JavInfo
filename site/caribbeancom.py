@@ -4,7 +4,17 @@ from bs4 import BeautifulSoup
 def caribbeancomm_init(id):
     r = requests.get('https://www.caribbeancom.com/moviepages/' + id + '/index.html')
     soup = BeautifulSoup(r.text, 'lxml')
-    return soup
+    diction = {
+        'id': id,
+        'coverLink': 'https://www.caribbeancom.com/moviepages/' + id + '/images/l_l.jpg',
+        'title': getTite(soup),
+        'description': getDiscription(soup),
+        'actor': getActor(soup),
+        'releaseTime': getUploadDate(soup),
+        'duration': getDuration(soup),
+        'tags': getTags(soup)
+    }
+    return diction
 
 def getTite(soup):
     title = soup.find(name='h1', itemprop="name").string
@@ -40,15 +50,4 @@ def getTags(soup):
 
 if __name__ == '__main__':
     id = input('输入id:\n')
-    soup = caribbeancomm_init(id)
-    diction = {
-        'id': id,
-        'coverLink': 'https://www.caribbeancom.com/moviepages/' + id + '/images/l_l.jpg',
-        'title': getTite(soup),
-        'description': getDiscription(soup),
-        'actor': getActor(soup),
-        'releaseTime': getUploadDate(soup),
-        'duration': getDuration(soup),
-        'tags': getTags(soup)
-    }
-    print(diction)
+    print(caribbeancomm_init(id))
