@@ -4,8 +4,8 @@ A Python program to scrape English  metadata for Japanese Adult Videos (JAV) are
 JavLibrary.com
 R18.com
 DMM.co.jp
-Caribbeancompr.com (Carribeancom Premium)
-Kin8Tengoku
-Tokyo Hot
-1pondo
+Caribbeancompr.com (Carribeancom Premium) complete
+Kin8Tengoku 
+Tokyo Hot complete
+1pondo complete
 HEYZO
