@@ -39,7 +39,8 @@ def tokyoHot_init(id):
             'actor': act,
             'releaseTime': releaseTime,
             'duration': duration,
-            'tags': tag[:-1]
+            'tags': tag[:-1],
+            'coverPATH': ''
         }
         return info
     except TypeError:

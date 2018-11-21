@@ -25,9 +25,10 @@ def kin8tengoku_init(id):
             'title': getTite(soup),
             'description': getDiscription(soup),
             'actor': act,
-        'releaseTime': releaseTime,
-        'duration': duration,
-            'tags': tag[:-1]
+            'releaseTime': releaseTime,
+            'duration': duration,
+            'tags': tag[:-1],
+            'coverPATH': ''
         }
         return info
     except IndexError:

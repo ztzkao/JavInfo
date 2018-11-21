@@ -15,7 +15,8 @@ def caribbeancommpr_init(id):
             'actor': getActor(soup),
             'releaseTime': getUploadDate(soup),
             'duration': getDuration(soup),
-            'tags': getTags(soup)
+            'tags': getTags(soup),
+            'coverPATH': ''
         }
         return diction
     except AttributeError:

@@ -13,7 +13,8 @@ def _1pondo_init(id):
             'actor': data['Actor'],
             'releaseTime': data['Release'],
             'duration': getDuration(data['Duration']),
-            'tags': getTags(data['UCNAME'])
+            'tags': getTags(data['UCNAME']),
+            'coverPATH': ''
         }
         return diction
     except json.JSONDecodeError:
