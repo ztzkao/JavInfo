@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from UI import Ui_MainWindow
-from downloader import searchSites
+from downloader import searchSites, downloader
 import JavInfo
 
 
@@ -10,6 +10,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		super(MyWindow, self).__init__(parent)
 		self.setupUi(self)
 		self.Search.clicked.connect(self.searchButtonClick)
+		self.downloadButton.clicked.connect(self.downloadButtonClick)
 	def searchButtonClick(self):
 		self.CoverLable.setText('正在获取')
 		keyword = self.inputID.text()
@@ -30,7 +31,12 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 			if list[i]['result'] == 'PASS':
 				self.downloadPATH.setText(str(list[i]['filename']))
 				self.downloadURL.setText(str(list[i]['url']))
-
+	def downloadButtonClick(self):
+		self.downloadUrl = self.downloadURL.text()
+		self.downloadPath = self.downloadPATH.text()
+		if not os.path.exists('media'):
+			os.mkdir('media')
+			downloader.GetOpenloadVideo(self.downloadUrl, 'meida/' + self.downloadPath)
 
 
 if __name__ == "__main__":

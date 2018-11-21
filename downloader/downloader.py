@@ -17,3 +17,6 @@ def GetOpenloadVideo(path,filename):
         # Just a video
         video = youtube_dlresult
     return video
+
+if __name__ == "__main__":
+    GetOpenloadVideo('https://openload.co/stream/TOBGE5yJfQs~1542894682~163.44.0.0~j8lgwfdJ?mime=true','ddt-551.mp4')
