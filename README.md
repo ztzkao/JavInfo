@@ -1,5 +1,6 @@
 # JavInfo  
-## A Python program to scrape metadata for Japanese Adult Videos (JAV) are searched on:  
+## A Python program to scrape metadata for Japanese Adult Videos (JAV) 
+##Searched on:  
 
 
 ## Complete    
